@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chant Counter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app" aria-label="Chant counter application">
+    <header class="app-header">
+      <h1>Chant Counter</h1>
+      <p>Simple, clear, and easy to use.</p>
+    </header>
+
+    <section class="settings" aria-label="Counter settings">
+      <div class="field-group">
+        <label for="chantName">Favorite chant</label>
+        <input id="chantName" type="text" placeholder="Enter chant name">
+      </div>
+      <div class="field-group">
+        <label for="targetCount">Target count</label>
+        <input id="targetCount" type="number" min="1" step="1" value="108">
+      </div>
+      <div class="field-group">
+        <label for="recognitionLanguage">Voice recognition language</label>
+        <select id="recognitionLanguage">
+          <option value="en-US">English</option>
+          <option value="hi-IN">Hindi</option>
+          <option value="sa-IN">Sanskrit (experimental)</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label for="confidenceThreshold">Voice confidence filter (0.10 - 1.00)</label>
+        <input id="confidenceThreshold" type="number" min="0.1" max="1" step="0.05" value="0.65">
+      </div>
+      <div class="field-group">
+        <label for="cooldownMs">Duplicate cooldown (milliseconds)</label>
+        <input id="cooldownMs" type="number" min="300" max="5000" step="100" value="1200">
+      </div>
+      <button id="saveSettings" class="secondary">Save Settings</button>
+    </section>
+
+    <section class="counter-panel" aria-label="Counter panel">
+      <p id="chantLabel" class="chant-label">Current chant: Om Namah Shivaya</p>
+      <div id="countDisplay" class="count-display" aria-live="polite">0</div>
+      <p id="progressText" class="progress-text">0 / 108</p>
+      <div id="statusMessage" class="status info" role="status">Press <strong>+1 Chant</strong> for each chant.</div>
+    </section>
+
+    <section class="controls" aria-label="Counter controls">
+      <button id="incrementBtn" class="primary">+1 Chant</button>
+      <div class="small-controls">
+        <button id="decrementBtn" class="secondary">-1 Undo</button>
+        <button id="resetBtn" class="secondary danger">Reset</button>
+      </div>
+      <label class="toggle">
+        <input id="voiceAlert" type="checkbox" checked>
+        Enable voice alert when target is exceeded
+      </label>
+      <div class="small-controls voice-controls">
+        <button id="startListeningBtn" class="secondary">Start Listening</button>
+        <button id="stopListeningBtn" class="secondary" disabled>Stop Listening</button>
+      </div>
+      <p id="listeningStatus" class="status info voice-status" role="status">Voice counting is idle.</p>
+      <p id="lastHeardText" class="heard-text">Last heard: —</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
